@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculateur de facture</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+	<h1>Calculateur de facture</h1>
+	<style>
+	input[type="checkbox"] {
+		transform: scale(2);
+		margin-right: 10px;
+	}
+
+			label {
+				font-size: 24px;
+				font-weight: bold;
+			}
+</style>
+
+	<!-- Formulaire avec des cases à cocher et des prix -->
+	<form id="facture">
+		<fieldset>
+			<legend>Services</legend>
+			<label>
+				<input type="checkbox" name="reanimation">Réanimation ($325,00)
+			</label><br>
+			<label>
+				<input type="checkbox" name="reanimation-police">Réanimation Police ($250,00)
+			</label><br>
+			<label>
+				<input type="checkbox" name="reanimation-mecano">Réanimation Mécano/Resto ($200,00)
+			</label><br>
+			<label>
+				<input type="checkbox" name="soins-normal-nord">Soins Normal Nord ($250,00)
+			</label><br>
+			<label>
+				<input type="checkbox" name="soins-normal">Soins Normal ($225,00)
+			</label><br>
+			<label>
+				<input type="checkbox" name="soins-police">Soins Police ($150,00)
+			</label><br>
+			<label>
+				<input type="checkbox" name="soins-mecano">Soins Mécano/Restauration ($135,00)
+			</label><br>
+			<label>
+				<input type="checkbox" name="transport">Transport ($50,00)
+			</label><br>
+			<label>
+				<input type="checkbox" name="transport-nord">Transport Nord ($95,00)
+			</label><br>
+			<label>
+				<input type="checkbox" name="transport-aerien">Transport Aérien ($250,00)
+			</label><br>
+			<label>
+				<input type="checkbox" name="anesthesie-local">Anasthésie Local ($100,00)
+			</label><br>
+			<label>
+				<input type="checkbox" name="anesthesie-generale">Anasthésie Générale ($200,00)
+			</label><br>
+			<label>
+				<input type="checkbox" name="ray-x">Ray-X / Scan / IRM ($150,00)
+			</label><br>
+			<label>
+				<input type="checkbox" name="psy-chiro-veto-genyco">Psy/Chiro/Veto/Genyco/etc ($/heure) ($70,00)
+			</label><br>
+			<label>
+				<input type="checkbox" name="blessure-balle">Blessure par balle - Suture Comprise ($50,00)
+			</label><br>
+			<label>
+				<input type="checkbox" name="medicament">Médicament (chaque) ($30,00)
+			</label><br>
+		</fieldset>
+		<fieldset>
+			<legend>Total</legend>
+			<label>
+				Total : <span id="total">0,00</span> $
+			</label>
+		</fieldset>
+	</form>
+	
+	<!-- Script JavaScript pour calculer le total -->
+			<script>
+			$(document).ready(function(){
+				// Écouteur d'événement sur les cases à cocher
+				$('input[type="checkbox"]').on('change', function(){
+					var total = 0;
+					// Parcourir chaque case cochée
+					$('input[type="checkbox"]:checked').each(function(){
+						// Ajouter le prix correspondant au total
+						switch($(this).attr('name')){
+							case 'reanimation':
+								total += 325.00;
+								break;
+							case 'reanimation-police':
+								total += 250.00;
+								break;
+							case 'reanimation-mecano':
+								total += 200.00;
+								break;
+							case 'soins-normal-nord':
+								total += 250.00;
+								break;
+							case 'soins-normal':
+								total += 225.00;
+								break;
+							case 'soins-police':
+								total += 150.00;
+								break;
+							case 'soins-mecano':
+								total += 135.00;
+								break;
+							case 'transport':
+								total += 50.00;
+								break;
+							case 'transport-nord':
+								total += 95.00;
+								break;
+							case 'transport-aerien':
+								total += 250.00;
+								break;
+							case 'anesthesie-local':
+								total += 100.00;
+								break;
+							case 'anesthesie-generale':
+								total += 200.00;
+								break;
+							case 'ray-x':
+								total += 150.00;
+								break;
+							case 'psy-chiro-veto-genyco':
+								total += 70.00;
+								break;
+							case 'blessure-balle':
+								total += 50.00;
+								break;
+							case 'medicament':
+								total += 30.00;
+								break;
+						}
+					});
+					// Mettre à jour le total affiché
+					$('#total').text(total.toFixed(2));
+				});
+			});
+		</script>
+	</body>
+</html>
+	
